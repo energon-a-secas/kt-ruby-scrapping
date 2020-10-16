@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'watir'
 
 search = 'aspiradora vertical thomas'.gsub('\s', '%20')

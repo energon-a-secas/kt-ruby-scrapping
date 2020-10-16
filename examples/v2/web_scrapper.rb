@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'nokogiri'
 require 'open-uri'
 
@@ -7,7 +9,9 @@ response = URI.open(drone_url)
 parsed_html = Nokogiri::HTML(response)
 
 parsed_html.css('li').each do |link|
-  puts link.content if link['data-normal-price'] || link['data-event-price'] # data-internet-price
+  if link['data-normal-price'] || link['data-event-price']
+    puts link.content
+  end # data-internet-price
 end
 
 # $  1.699.990 (Oferta)
