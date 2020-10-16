@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'nokogiri'
 require 'open-uri'
 
@@ -7,10 +9,10 @@ response = URI.open(drone_url)
 parsed_html = Nokogiri::HTML(response)
 
 parsed_html.css('li').each do |link|
-  product_available = false
-  %w[data-normal-price data-event-price data-internet-price].select { |v| product_available = true if link[v] }
-  puts link.content if product_available
+  %w[data-normal-price data-event-price data-internet-price].select do |v|
+    puts link[v] if link[v]
+  end
 end
 
-# $  1.699.990 (Oferta)
-# $  1.899.990
+# 1.699.990
+# 1.899.990
